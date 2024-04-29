@@ -2,7 +2,26 @@ POST http://localhost:4444/events
 Content-Type: application/json
 
 {
-    "title": "Unite",
-    "details": "An event for those who are passionate about programming",
-    "maximumAttendees": 100
+    "title": "New Event",
+    "details": null,
+    "maximumAttendees": 1
 }
+###
+
+POST http://localhost:4444/events/72150c34-2b60-4949-835e-0b11ed2469b0/attendees
+Content-Type: application/json
+
+{
+    "name": "Jonh Doe",
+    "email": "jonhdoe@gmail.com"
+}
+
+###
+
+GET http://localhost:4444/events/72150c34-2b60-4949-835e-0b11ed2469b0
+Content-Type: application/json
+
+###
+
+GET http://localhost:4444/attendees/3/badge
+Content-Type: application/json
