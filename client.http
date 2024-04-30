@@ -25,3 +25,13 @@ Content-Type: application/json
 
 GET http://localhost:4444/attendees/3/badge
 Content-Type: application/json
+
+###
+
+GET http://localhost:4444/attendees/2/check-in
+Content-Type: application/json
+
+###
+
+GET http://localhost:4444/events/fdcdfd2e-a0e3-43de-835a-96c67c320202/attendees?query=jonh
+Content-Type: application/json
