@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "docker:init": "docker compose up -d",
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "build": "tsup src --format esm",
+    "start": "node dist/server.mjs",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +20,7 @@
   "devDependencies": {
     "@types/node": "^20.12.7",
     "prisma": "^5.13.0",
+    "tsup": "^8.0.2",
     "tsx": "^4.7.3",
     "typescript": "^5.4.5"
   },
