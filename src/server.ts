@@ -9,11 +9,17 @@ import { getEvent } from "./routes/get-event";
 import { getAttendeeBadge } from "./routes/get-attendee-badge";
 import { checkIn } from "./routes/check-in";
 import { getEventAttendees } from "./routes/get-events-attendees";
+import { errorHandler } from "./error-handler";
+import { fastifyCors } from "@fastify/cors";
 
 const app = fastify()
+.setValidatorCompiler(validatorCompiler)
+.setSerializerCompiler(serializerCompiler);
 
-app.setValidatorCompiler(validatorCompiler);
-app.setSerializerCompiler(serializerCompiler);
+app.register(fastifyCors, {
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+})
 
 app.get('/ping', async (request, reply) => {
     return { pong: true }
@@ -42,7 +48,9 @@ app.register(getAttendeeBadge)
 app.register(checkIn)
 app.register(getEventAttendees)
 
-app.listen({port: 4444})
+app.setErrorHandler(errorHandler)
+
+app.listen({port: 4444, host: '0.0.0.0'})
 .then(() => {
     console.log("HTTP server running... 🚀")
 })
